@@ -11,7 +11,6 @@ function Menu({ newest, recent, handleClick }) {
       <ListGroup.Item onClick={recent}>Popular</ListGroup.Item>
       <ListGroup.Item onClick={newest}>Upcoming</ListGroup.Item>
       <ListGroup.Item onClick={handleClick}>Best ranked</ListGroup.Item>
-      <ListGroup.Item>horizontally!</ListGroup.Item>
     </ListGroup>
   );
 }

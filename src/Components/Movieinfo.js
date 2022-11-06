@@ -43,10 +43,106 @@ const Movieinfo = ({
     </div>
   );
 
-*/ const [
-    modalShow,
-    setModalShow,
-  ] = React.useState(false);
+*/
+  function genres(genre_ids) {
+    const newArr = genre_ids.map(myFunction);
+    function myFunction(num) {
+      switch (num) {
+        case 12:
+          return "Adventure";
+          break;
+        case 28:
+          return "Action";
+          break;
+        case 16:
+          return "Animation";
+          break;
+        case 35:
+          return "Comedy";
+          break;
+        case 80:
+          return "Crime";
+          break;
+        case 99:
+          return "Documentary";
+          break;
+        case 18:
+          return "Drama";
+          break;
+        case 14:
+          return "Fantasy";
+          break;
+        case 36:
+          return "History";
+          break;
+        case 27:
+          return "Horror";
+          break;
+        case 9648:
+          return "Mystery";
+          break;
+        case 10749:
+          return "Romance";
+          break;
+        case 878:
+          return "Science Fiction";
+          break;
+        case 53:
+          return "Thriller";
+          break;
+        case 10752:
+          return "War";
+          break;
+        case 37:
+          return "Western";
+          break;
+        case 10759:
+          return "Action & Adventure";
+          break;
+        case 16:
+          return "Animation";
+          break;
+        case 35:
+          return "Comedy";
+          break;
+        case 80:
+          return "Crime";
+          break;
+        case 99:
+          return "Documentary";
+          break;
+        case 18:
+          return "Drama";
+          break;
+        case 10751:
+          return "Family";
+          break;
+        case 10762:
+          return "Kids";
+          break;
+        case 10763:
+          return "News";
+          break;
+        case 10764:
+          return "Reality";
+          break;
+        case 10765:
+          return "Sci-Fi&Fantasy";
+          break;
+        case 10766:
+          return "Soap";
+          break;
+        case 10767:
+          return "Talk";
+          break;
+        case 10768:
+          return "War&Politics";
+          break;
+      }
+    }
+    return newArr.join("/");
+  }
+  const [modalShow, setModalShow] = React.useState(false);
   function MyVerticallyCenteredModal(props) {
     return (
       <Modal
@@ -95,18 +191,7 @@ const Movieinfo = ({
             }}
           >
             <p>{overview}</p>
-            <div>
-              <span>
-                {genre_ids.includes(10765) && (
-                  <span style={{ fontSize: "15px" }}>Sci-Fi & Fantasy, </span>
-                )}
-              </span>
-              <span>
-                {genre_ids.includes(10759) && (
-                  <span style={{ fontSize: "15px" }}>Action & Adventure</span>
-                )}
-              </span>
-            </div>
+            <div>{genres(genre_ids)}</div>
           </div>
         </Modal.Body>
         <Modal.Footer>
@@ -134,22 +219,19 @@ const Movieinfo = ({
           />
           <Card.Body>
             <Card.Title>{title}</Card.Title>
-            <br></br>
+
             <Card.Text>
-              <h4>
-                Genre:
-                <span>
-                  {genre_ids.includes(10765) && (
-                    <span style={{ fontSize: "15px" }}>Sci-Fi & Fantasy </span>
-                  )}
-                </span>
-                <span>
-                  {genre_ids.includes(10759) && (
-                    <span style={{ fontSize: "15px" }}>Action & Adventure</span>
-                  )}
-                </span>
-              </h4>
-              <h4>
+              <div>
+                <span style={{ fontSize: "15px" }}>{genres(genre_ids)}</span>
+                {/*{genre_ids.includes(10765) && (
+                  <span style={{ fontSize: "15px" }}>Sci-Fi & Fantasy </span>
+                )}
+
+                {genre_ids.includes(10759) && (
+                  <span style={{ fontSize: "15px" }}>Action & Adventure</span>
+                )}*/}
+              </div>
+              <div>
                 User rating :
                 <div
                   id="rating"
@@ -157,7 +239,7 @@ const Movieinfo = ({
                 >
                   {(Math.round(vote_average * 10) / 10).toFixed(1)}
                 </div>
-              </h4>
+              </div>
               <Button variant="primary" onClick={() => setModalShow(true)}>
                 {/*show modal*/}
                 More info {console.log("KONECNE")}
