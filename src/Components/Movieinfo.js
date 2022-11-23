@@ -16,10 +16,11 @@ const Movieinfo = ({
   vote_average,
   selectMovie,
 }) => {
+  const [modalShow, setModalShow] = React.useState(false);
   const styles = useSpring({
     from: { opacity: "0.1" },
     to: { opacity: "1" },
-    config: { duration: "1500" },
+    config: { duration: "4500" },
   });
   if (media_type === "tv") {
     title = name;
@@ -140,9 +141,29 @@ const Movieinfo = ({
           break;
       }
     }
-    return newArr.join("/");
+    console.log(newArr);
+    console.log("TYP JE:" + typeof newArr);
+    return newArr;
   }
-  const [modalShow, setModalShow] = React.useState(false);
+  const Click = (event) => {
+    // 👇️ refers to the div element
+    console.log(event.currentTarget.innerText);
+
+    console.log("div clicked");
+  };
+  const renderList = (arr) => {
+    return arr.map((item) => (
+      <li
+        style={{
+          width: "fit-content",
+        }}
+        onClick={Click}
+      >
+        {item}
+        <br></br>
+      </li>
+    ));
+  };
   function MyVerticallyCenteredModal(props) {
     return (
       <Modal
@@ -222,14 +243,9 @@ const Movieinfo = ({
 
             <Card.Text>
               <div>
-                <span style={{ fontSize: "15px" }}>{genres(genre_ids)}</span>
-                {/*{genre_ids.includes(10765) && (
-                  <span style={{ fontSize: "15px" }}>Sci-Fi & Fantasy </span>
-                )}
-
-                {genre_ids.includes(10759) && (
-                  <span style={{ fontSize: "15px" }}>Action & Adventure</span>
-                )}*/}
+                <span style={{ fontSize: "15px" }}>
+                  {renderList(genres(genre_ids))}
+                </span>
               </div>
               <div>
                 User rating :
