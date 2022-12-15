@@ -2,7 +2,7 @@ import React from "react";
 import "react-bootstrap";
 import "./Navbar.css";
 import logo2 from "../Images/logo2.jpg";
-import Menu from "./Menu";
+
 const Navbar = (props) => {
   return (
     <div>

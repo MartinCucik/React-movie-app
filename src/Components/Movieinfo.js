@@ -1,12 +1,13 @@
-import React from "react";
 import "./Movieinfo.css";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useSpring, animated } from "react-spring";
 import Modal from "react-bootstrap/Modal";
+import React, { Fragment, useEffect } from "react";
 
 const Movieinfo = ({
+  id,
   title,
   overview,
   media_type,
@@ -15,6 +16,8 @@ const Movieinfo = ({
   poster_path,
   vote_average,
   selectMovie,
+  updateSelectedGenre,
+  selectedGenre,
 }) => {
   const [modalShow, setModalShow] = React.useState(false);
   const styles = useSpring({
@@ -25,145 +28,125 @@ const Movieinfo = ({
   if (media_type === "tv") {
     title = name;
   }
-  /*
-  if (media_type === "tv") 
-  if (media_type === "tv") {
-    return (
-      <div className="hero">
-        <img src={"https://image.tmdb.org/t/p/w500" + poster_path}></img>
-        <div>{vote_average}</div>
-      </div>
-    );
-  }
-  return (
-    <div className="hero">
-      <img src={"https://image.tmdb.org/t/p/w500" + poster_path}></img>
-      <div>
-        <h1>{vote_average}</h1>
-      </div>
-    </div>
-  );
 
-*/
   function genres(genre_ids) {
     const newArr = genre_ids.map(myFunction);
     function myFunction(num) {
       switch (num) {
         case 12:
           return "Adventure";
-          break;
+
         case 28:
           return "Action";
-          break;
+
         case 16:
           return "Animation";
-          break;
+
         case 35:
           return "Comedy";
-          break;
+
         case 80:
           return "Crime";
-          break;
+
         case 99:
           return "Documentary";
-          break;
+
         case 18:
           return "Drama";
-          break;
+
         case 14:
           return "Fantasy";
-          break;
+
         case 36:
           return "History";
-          break;
+
         case 27:
           return "Horror";
-          break;
+
         case 9648:
           return "Mystery";
-          break;
+
         case 10749:
           return "Romance";
-          break;
+
         case 878:
           return "Science Fiction";
-          break;
+
         case 53:
           return "Thriller";
-          break;
+
         case 10752:
           return "War";
-          break;
+
         case 37:
           return "Western";
-          break;
+
         case 10759:
           return "Action & Adventure";
-          break;
+
         case 16:
           return "Animation";
-          break;
+
         case 35:
           return "Comedy";
-          break;
+
         case 80:
           return "Crime";
-          break;
+
         case 99:
           return "Documentary";
-          break;
+
         case 18:
           return "Drama";
-          break;
+
         case 10751:
           return "Family";
-          break;
+
         case 10762:
           return "Kids";
-          break;
+
         case 10763:
           return "News";
-          break;
+
         case 10764:
           return "Reality";
-          break;
+
         case 10765:
           return "Sci-Fi&Fantasy";
-          break;
+
         case 10766:
           return "Soap";
-          break;
+
         case 10767:
           return "Talk";
-          break;
+
         case 10768:
           return "War&Politics";
-          break;
       }
     }
-    console.log(newArr);
-    console.log("TYP JE:" + typeof newArr);
+
     return newArr;
   }
-  const Click = (event) => {
-    // 👇️ refers to the div element
-    console.log(event.currentTarget.innerText);
 
-    console.log("div clicked");
-  };
-  const renderList = (arr) => {
-    return arr.map((item) => (
-      <li
+  function update(genre) {
+    updateSelectedGenre(genre);
+  }
+  const Genres = (genreIds) => {
+    return genreIds.map((genreId, index) => (
+      <span
         style={{
-          width: "fit-content",
+          cursor: "pointer",
         }}
-        onClick={Click}
+        onClick={() => {
+          update(genreId);
+        }}
       >
-        {item}
-        <br></br>
-      </li>
+        {index > 0 && ","}
+        {genreId}
+      </span>
     ));
   };
+
   function MyVerticallyCenteredModal(props) {
     return (
       <Modal
@@ -212,7 +195,7 @@ const Movieinfo = ({
             }}
           >
             <p>{overview}</p>
-            <div>{genres(genre_ids)}</div>
+            <div> {Genres(genres(genre_ids))}</div>
           </div>
         </Modal.Body>
         <Modal.Footer>
@@ -232,7 +215,7 @@ const Movieinfo = ({
         <Card
           className="card m-2 h-100"
           style={{ width: "18rem" }}
-          onClick={() => selectMovie(title)}
+          onClick={() => selectMovie(id)}
         >
           <Card.Img
             variant="top"
@@ -244,7 +227,7 @@ const Movieinfo = ({
             <Card.Text>
               <div>
                 <span style={{ fontSize: "15px" }}>
-                  {renderList(genres(genre_ids))}
+                  {Genres(genres(genre_ids))}
                 </span>
               </div>
               <div>
@@ -256,10 +239,12 @@ const Movieinfo = ({
                   {(Math.round(vote_average * 10) / 10).toFixed(1)}
                 </div>
               </div>
-              <Button variant="primary" onClick={() => setModalShow(true)}>
-                {/*show modal*/}
-                More info {console.log("KONECNE")}
-              </Button>
+              <div class="col-md-12 text-center">
+                <Button variant="flat" onClick={() => setModalShow(true)}>
+                  {/*show modal*/}
+                  More info
+                </Button>
+              </div>
             </Card.Text>
           </Card.Body>
         </Card>
