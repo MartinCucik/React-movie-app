@@ -4,6 +4,11 @@ import "./Navbar.css";
 import logo2 from "../Images/logo2.jpg";
 
 const Navbar = (props) => {
+  const [debouncedTerm, setDebouncedTerm] = React.useState("");
+  React.useEffect(() => {
+    const timer = setTimeout(() => props.SetSearchValue(debouncedTerm), 750);
+    return () => clearTimeout(timer);
+  }, [debouncedTerm]);
   return (
     <div>
       <nav class="navbar navbar-light bg-light">
@@ -21,7 +26,7 @@ const Navbar = (props) => {
           <input
             class="form-control mr-sm-2"
             value={props.value}
-            onChange={(event) => props.SetSearchValue(event.target.value)}
+            onChange={(event) => setDebouncedTerm(event.target.value)}
             placeholder="Search movie"
             aria-label="Search"
           />

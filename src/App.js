@@ -89,14 +89,16 @@ function App() {
       <Menu popular={recent} bestranked={bestranked} upcoming={newest} />
       <div className="container1">
         <div className="movie">
-          {movies.map((movieReq) => (
-            <Movieinfo
-              key={movieReq.id}
-              {...movieReq}
-              selectMovie={selectMovie}
-              updateSelectedGenre={updateSelectedGenre}
-            />
-          ))}
+          {movies && movies.length > 0
+            ? movies.map((movieReq) => (
+                <Movieinfo
+                  key={movieReq.id}
+                  {...movieReq}
+                  selectMovie={selectMovie}
+                  updateSelectedGenre={updateSelectedGenre}
+                />
+              ))
+            : null}
         </div>
       </div>
     </div>
