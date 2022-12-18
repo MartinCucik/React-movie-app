@@ -14,7 +14,7 @@ Martin Cucik
 */
 function App() {
   const [movies, setMovies] = React.useState([]);
-  const [searchValue, SetSearchValue] = React.useState();
+  const [searchValue, SetSearchValue] = React.useState("");
   const [selectedMovie, selectMovie] = React.useState();
   const [selectedGenre, updateSelectedGenre] = React.useState("s");
   const [movieID, setMovieId] = React.useState();
@@ -51,9 +51,6 @@ function App() {
       });
   }
   React.useEffect(() => {
-    console.log(selectedGenre);
-    console.log(selectedMovie);
-    console.log(selectedMovie);
     if (typeof selectedMovie !== "undefined" && selectedMovie != null) {
       fetch(
         `https://api.themoviedb.org/3/movie/${selectedMovie}/similar?api_key=895828b8903ed3292aba730835d1e40e&language=en-US&page=1`
@@ -65,15 +62,18 @@ function App() {
     }
   }, [selectedGenre]);
   React.useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=895828b8903ed3292aba730835d1e40e&language=en-US&query=${searchValue}&page=1&include_adult=false`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setMovies(data.results);
-      });
+    if (searchValue && searchValue.length > 0) {
+      fetch(
+        `https://api.themoviedb.org/3/search/movie?api_key=895828b8903ed3292aba730835d1e40e&language=en-US&query=${searchValue}&page=1&include_adult=false`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setMovies(data.results);
+        });
+    }
   }, [searchValue]);
   React.useEffect(() => {
+    console.log("First efect");
     fetch(
       "https://api.themoviedb.org/3/trending/all/week?api_key=895828b8903ed3292aba730835d1e40e"
     )

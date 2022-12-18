@@ -84,21 +84,6 @@ const Movieinfo = ({
         case 10759:
           return "Action & Adventure";
 
-        case 16:
-          return "Animation";
-
-        case 35:
-          return "Comedy";
-
-        case 80:
-          return "Crime";
-
-        case 99:
-          return "Documentary";
-
-        case 18:
-          return "Drama";
-
         case 10751:
           return "Family";
 
