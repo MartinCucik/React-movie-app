@@ -11,8 +11,8 @@ const Navbar = (props) => {
   }, [debouncedTerm]);
   return (
     <div>
-      <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">
+      <nav className="navbar navbar-light bg-dark justify-content-md-between justify-content-center">
+        <a className="navbar-brand" href="#">
           <img
             src={logo2}
             width="120"
@@ -22,15 +22,18 @@ const Navbar = (props) => {
           ></img>
         </a>
 
-        <form class="form-inline">
+        <form className="form-inline">
           <input
-            class="form-control mr-sm-2"
+            className="form-control mr-sm-2"
             value={props.value}
             onChange={(event) => setDebouncedTerm(event.target.value)}
             placeholder="Search movie"
             aria-label="Search"
           />
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+          <button
+            className="btn btn-outline-success my-2 my-sm-0"
+            type="submit"
+          >
             Search
           </button>
         </form>

@@ -13,6 +13,8 @@ const Movieinfo = ({
   media_type,
   genre_ids,
   name,
+  release_date,
+  first_air_date,
   poster_path,
   vote_average,
   selectMovie,
@@ -25,8 +27,11 @@ const Movieinfo = ({
     to: { opacity: "1" },
     config: { duration: "4500" },
   });
+  //because api response have different keys if its tv series or movie
+  let d = new Date(release_date);
   if (media_type === "tv") {
     title = name;
+    d = new Date(first_air_date);
   }
 
   function genres(genre_ids) {
@@ -210,6 +215,7 @@ const Movieinfo = ({
             <Card.Title>{title}</Card.Title>
 
             <Card.Text>
+              <div className="text-center">{d.getFullYear()}</div>
               <div>
                 <span style={{ fontSize: "15px" }}>
                   {Genres(genres(genre_ids))}
