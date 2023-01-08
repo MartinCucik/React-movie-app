@@ -1,9 +1,5 @@
 import "./Movieinfo.css";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import ListGroup from "react-bootstrap/ListGroup";
 import { useSpring, animated } from "react-spring";
-import Modal from "react-bootstrap/Modal";
 import React, { Fragment, useEffect } from "react";
 
 const Movieinfo = ({
@@ -21,7 +17,7 @@ const Movieinfo = ({
   updateSelectedGenre,
   selectedGenre,
 }) => {
-  const [modalShow, setModalShow] = React.useState(false);
+  const [showModal, setShowModal] = React.useState(false);
   const styles = useSpring({
     from: { opacity: "0.1" },
     to: { opacity: "1" },
@@ -112,6 +108,8 @@ const Movieinfo = ({
 
         case 10768:
           return "War&Politics";
+        default:
+          return 0;
       }
     }
 
@@ -136,7 +134,7 @@ const Movieinfo = ({
       </span>
     ));
   };
-
+  /*
   function MyVerticallyCenteredModal(props) {
     return (
       <Modal
@@ -170,8 +168,8 @@ const Movieinfo = ({
           }}
         >
           <Card.Img
+            className="w-20"
             variant="top"
-            style={{ width: "20rem" }}
             src={"https://image.tmdb.org/t/p/w500" + poster_path}
           />
 
@@ -193,15 +191,114 @@ const Movieinfo = ({
         </Modal.Footer>
       </Modal>
     );
+  }*/
+
+  function MyVerticallyCenteredModal(props) {
+    return (
+      <>
+        {showModal ? (
+          <>
+            <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none px-2">
+              <div
+                className="relative w-auto my-6 mx-auto max-w-3xl"
+                style={{
+                  backgroundImage: `url(${
+                    "https://image.tmdb.org/t/p/w500" + poster_path
+                  })`,
+                }}
+              >
+                {/*content*/}
+                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none bg-zinc-300">
+                  {/*header*/}
+                  <div className="flex items-center justify-center p-5 rounded-t">
+                    <h3 className="text-3xl font-semibold text-center">
+                      {title}
+                    </h3>
+                  </div>
+                  {/*body*/}
+                  <div className="relative flex flex-col md:flex-row items-center md:items-start px-2">
+                    <img
+                      className="w-60 md:w-80"
+                      src={"https://image.tmdb.org/t/p/w500" + poster_path}
+                      alt="movie poster"
+                    />
+                    <div className="body flex flex-col justify-evenly flex-auto">
+                      <p className="my-4 text-slate-500 text-lg leading-relaxed px-2">
+                        {overview}
+                      </p>
+                      <div>
+                        {" "}
+                        <span className="text-2xl">
+                          {Genres(genres(genre_ids))}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-center p-6">
+                    <span className="text-2xl">
+                      {Genres(genres(genre_ids))}
+                    </span>
+                  </div>
+                  {/*footer*/}
+                  <div className="flex items-center justify-end  rounded-b">
+                    <button
+                      className="text-red-500 background-transparent font-bold uppercase px-6 pb-4 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      type="button"
+                      onClick={() => setShowModal(false)}
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+          </>
+        ) : null}
+      </>
+    );
   }
   return (
     <div className="reacte">
       <MyVerticallyCenteredModal // modal which is hidden
+        show={showModal}
+        onHide={() => setShowModal(false)}
+      />
+      <div className="w-80 rounded overflow-hidden shadow-lg my-2 mx-2 flex flex-col md:w-64 bg-stone-400">
+        <img
+          className="max-w-2"
+          src={"https://image.tmdb.org/t/p/w500" + poster_path}
+          alt="Sunset in the mountains"
+        ></img>
+        <div className="body flex flex-col justify-between flex-auto">
+          <div className="font-bold text-xl text-center mb-2">{title}</div>
+          <p className="content">
+            <div className="text-center">{d.getFullYear()}</div>
+            <div className="">
+              <span style={{ fontSize: "15px" }}>
+                {Genres(genres(genre_ids))}
+              </span>
+            </div>{" "}
+            <div className="text-center">
+              <button
+                className="bg-transparent text-center hover:bg-blue-500 text-black font-semibold hover:text-white py-2 px-4 border border-stone-500 hover:border-transparent rounded"
+                type="button"
+                onClick={() => setShowModal(true)}
+              >
+                More info
+              </button>
+            </div>{" "}
+          </p>
+        </div>
+      </div>
+      {/* <MyVerticallyCenteredModal // modal which is hidden
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
-      <animated.div className="hehe" style={styles}>
+  */}
+      {/*    <animated.div className="hehe" style={styles}>
         {" "}
+          
         <Card
           className="card m-2 h-100"
           style={{ width: "18rem" }}
@@ -230,9 +327,10 @@ const Movieinfo = ({
                   {(Math.round(vote_average * 10) / 10).toFixed(1)}
                 </div>
               </div>
-              <div class="col-md-12 text-center">
+  <div class="col-md-12 text-center">
+
                 <Button variant="flat" onClick={() => setModalShow(true)}>
-                  {/*show modal*/}
+                
                   More info
                 </Button>
               </div>
@@ -240,6 +338,7 @@ const Movieinfo = ({
           </Card.Body>
         </Card>
       </animated.div>
+    */}
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import React from "react";
-import "react-bootstrap";
-import "./Navbar.css";
+
 import logo2 from "../Images/logo2.jpg";
 
 const Navbar = (props) => {
@@ -11,8 +10,8 @@ const Navbar = (props) => {
   }, [debouncedTerm]);
   return (
     <div>
-      <nav className="navbar navbar-light bg-dark justify-content-md-between justify-content-center">
-        <a className="navbar-brand" href="#">
+      <nav className="w-full px-10 bg-stone-700 shadow flex flex-col md:flex-row  items-center justify-between">
+        <a className="flex my-2" href="#">
           <img
             src={logo2}
             width="120"
@@ -22,16 +21,16 @@ const Navbar = (props) => {
           ></img>
         </a>
 
-        <form className="form-inline">
+        <form className="flex flex-col md:flex-row text-xl items-center border-t-emerald-500">
           <input
-            className="form-control mr-sm-2"
+            className="px-2 py-2"
             value={props.value}
             onChange={(event) => setDebouncedTerm(event.target.value)}
             placeholder="Search movie"
             aria-label="Search"
           />
           <button
-            className="btn btn-outline-success my-2 my-sm-0"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold my-1 py-2 px-4 flex"
             type="submit"
           >
             Search

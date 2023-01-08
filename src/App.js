@@ -3,7 +3,7 @@ import "./App.css";
 import Navbar from "./Components/Navbar.js";
 import React from "react";
 import Movieinfo from "./Components/Movieinfo";
-
+import Carousel from "./Components/Carousel";
 import Menu from "./Components/Menu";
 
 /*
@@ -86,7 +86,9 @@ function App() {
   return (
     <div>
       <Navbar searchValue={searchValue} SetSearchValue={SetSearchValue} />
+
       <Menu popular={recent} bestranked={bestranked} upcoming={newest} />
+      <Carousel movies={movies} />
       <div className="container1">
         <div className="movie">
           {movies && movies.length > 0

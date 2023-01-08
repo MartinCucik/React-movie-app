@@ -1,17 +1,31 @@
 import React from "react";
-import "./Menu.css";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import ListGroup from "react-bootstrap/ListGroup";
-import { useSpring, animated } from "react-spring";
 
 function Menu({ popular, upcoming, bestranked }) {
   return (
-    <ListGroup horizontal className="menu">
-      <ListGroup.Item onClick={popular}>Popular</ListGroup.Item>
-      <ListGroup.Item onClick={upcoming}>Upcoming</ListGroup.Item>
-      <ListGroup.Item onClick={bestranked}>Best ranked</ListGroup.Item>
-    </ListGroup>
+    <>
+      <div>
+        <ul className="text-2xl  flex flex-row  lg:flex-row list-none lg:ml-auto justify-center bg-red-400">
+          <li
+            className="nav-item px-2 py-2 cursor-pointer bg-red-400 hover:bg-red-700 md:px-6"
+            onClick={popular}
+          >
+            Popular
+          </li>
+          <li
+            className="nav-item  px-2 py-2 cursor-pointer bg-red-400 hover:bg-red-700 md:px-6"
+            onClick={upcoming}
+          >
+            Upcoming
+          </li>
+          <li
+            className="nav-item px-2 py-2 cursor-pointer bg-red-400 hover:bg-red-700 md:px-6"
+            onClick={bestranked}
+          >
+            Best ranked
+          </li>
+        </ul>
+      </div>
+    </>
   );
 }
 
