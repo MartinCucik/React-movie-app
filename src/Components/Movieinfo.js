@@ -226,12 +226,6 @@ const Movieinfo = ({
                       <p className="my-4 text-slate-500 text-lg leading-relaxed px-2">
                         {overview}
                       </p>
-                      <div>
-                        {" "}
-                        <span className="text-2xl">
-                          {Genres(genres(genre_ids))}
-                        </span>
-                      </div>
                     </div>
                   </div>
                   <div className="flex items-center justify-center p-6">
