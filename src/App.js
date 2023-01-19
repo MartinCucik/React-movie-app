@@ -51,9 +51,10 @@ function App() {
       });
   }
   React.useEffect(() => {
-    if (typeof selectedMovie !== "undefined" && selectedMovie != null) {
+    console.log("fetch from genre" + selectedGenre);
+    if (selectedGenre !== "s") {
       fetch(
-        `https://api.themoviedb.org/3/movie/${selectedMovie}/similar?api_key=895828b8903ed3292aba730835d1e40e&language=en-US&page=1`
+        `https://api.themoviedb.org/3/discover/movie?api_key=895828b8903ed3292aba730835d1e40e&with_genres=${selectedGenre}`
       )
         .then((res) => res.json())
         .then((data) => {

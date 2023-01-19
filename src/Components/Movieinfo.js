@@ -14,8 +14,8 @@ const Movieinfo = ({
   poster_path,
   vote_average,
   selectMovie,
-  updateSelectedGenre,
   selectedGenre,
+  updateSelectedGenre,
 }) => {
   const [showModal, setShowModal] = React.useState(false);
   const styles = useSpring({
@@ -35,79 +35,79 @@ const Movieinfo = ({
     function myFunction(num) {
       switch (num) {
         case 12:
-          return "Adventure";
+          return ["Adventure", 12];
 
         case 28:
-          return "Action";
+          return ["Action", 28];
 
         case 16:
-          return "Animation";
+          return ["Animation", 16];
 
         case 35:
-          return "Comedy";
+          return ["Comedy", 35];
 
         case 80:
-          return "Crime";
+          return ["Crime", 80];
 
         case 99:
-          return "Documentary";
+          return ["Documentary", 99];
 
         case 18:
-          return "Drama";
+          return ["Drama", 18];
 
         case 14:
-          return "Fantasy";
+          return ["Fantasy", 14];
 
         case 36:
-          return "History";
+          return ["History", 36];
 
         case 27:
-          return "Horror";
+          return ["Horror", 27];
 
         case 9648:
-          return "Mystery";
+          return ["Mystery", 9468];
 
         case 10749:
-          return "Romance";
+          return ["Romance", 10749];
 
         case 878:
-          return "Science Fiction";
+          return ["Science Fiction", 878];
 
         case 53:
-          return "Thriller";
+          return ["Thriller", 53];
 
         case 10752:
-          return "War";
+          return ["War", 10752];
 
         case 37:
-          return "Western";
+          return ["Western", 37];
 
         case 10759:
-          return "Action & Adventure";
+          return ["Action & Adventure", 10759];
 
         case 10751:
-          return "Family";
+          return ["Family", 10751];
 
         case 10762:
-          return "Kids";
+          return ["Kids", 10762];
 
         case 10763:
-          return "News";
+          return ["News", 10763];
 
         case 10764:
-          return "Reality";
+          return ["Reality", 10764];
 
         case 10765:
-          return "Sci-Fi&Fantasy";
+          return ["Sci-Fi&Fantasy", 10765];
 
         case 10766:
-          return "Soap";
+          return ["Soap", 10766];
 
         case 10767:
-          return "Talk";
+          return ["Talk", 10767];
 
         case 10768:
-          return "War&Politics";
+          return ["War&Politics", 10768];
         default:
           return 0;
       }
@@ -117,7 +117,9 @@ const Movieinfo = ({
   }
 
   function update(genre) {
-    updateSelectedGenre(genre);
+    updateSelectedGenre(genre[1]);
+    console.log(genre);
+    console.log(selectedGenre);
   }
   const Genres = (genreIds) => {
     return genreIds.map((genreId, index) => (
@@ -130,7 +132,7 @@ const Movieinfo = ({
         }}
       >
         {index > 0 && ","}
-        {genreId}
+        {genreId[0]}
       </span>
     ));
   };
