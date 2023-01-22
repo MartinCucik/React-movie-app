@@ -261,11 +261,14 @@ const Movieinfo = ({
         onHide={() => setShowModal(false)}
       />
       <div className="w-80 rounded overflow-hidden shadow-lg my-2 mx-2 flex flex-col md:w-64 bg-stone-400">
-        <img
-          className="max-w-2"
-          src={"https://image.tmdb.org/t/p/w500" + poster_path}
-          alt="Sunset in the mountains"
-        ></img>
+        <div className="relative">
+          <div className="tag">{vote_average.toFixed(2)}</div>
+          <img
+            className="max-w-2"
+            src={"https://image.tmdb.org/t/p/w500" + poster_path}
+            alt="Sunset in the mountains"
+          ></img>
+        </div>
         <div className="body flex flex-col justify-between flex-auto">
           <div className="font-bold text-xl text-center mb-2">{title}</div>
           <p className="content">
