@@ -1,6 +1,12 @@
 import React from "react";
 
-function Menu({ popular, upcoming, bestranked, setPage }) {
+function Menu({ fretch, upcoming, bestranked, setPage, content, setContent }) {
+  const trendingurl = `https://api.themoviedb.org/3/trending/all/week?api_key=895828b8903ed3292aba730835d1e40e&language=en-US&page=`;
+  const topratedurl =
+    "https://api.themoviedb.org/3/movie/top_rated?api_key=895828b8903ed3292aba730835d1e40e&language=en-US&page=";
+  const upcomingurl =
+    "https://api.themoviedb.org/3/movie/upcoming?api_key=895828b8903ed3292aba730835d1e40e&language=en-US&page=";
+
   return (
     <>
       <div>
@@ -8,21 +14,30 @@ function Menu({ popular, upcoming, bestranked, setPage }) {
           <li
             className="nav-item px-2 py-2 cursor-pointer bg-red-400 hover:bg-red-700 md:px-6"
             onClick={() => {
-              popular(1);
-              setPage(1);
+              fretch(trendingurl, 1);
+              setPage(2);
+              setContent(trendingurl);
             }}
           >
             Popular
           </li>
           <li
             className="nav-item  px-2 py-2 cursor-pointer bg-red-400 hover:bg-red-700 md:px-6"
-            onClick={upcoming}
+            onClick={() => {
+              fretch(upcomingurl, 1);
+              setContent(upcomingurl);
+              setPage(2);
+            }}
           >
             Upcoming
           </li>
           <li
             className="nav-item px-2 py-2 cursor-pointer bg-red-400 hover:bg-red-700 md:px-6"
-            onClick={bestranked}
+            onClick={() => {
+              fretch(topratedurl, 1);
+              setContent(topratedurl);
+              setPage(2);
+            }}
           >
             Best ranked
           </li>

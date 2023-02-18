@@ -5,7 +5,7 @@ import Movieinfo from "./Components/Movieinfo";
 import Carousel from "./Components/Carousel";
 import Menu from "./Components/Menu";
 import Pagination from "./Components/Pagination";
-import Paginate from "./Components/Paginate";
+
 /*
 In this app ,i ve choosen user scenario of movie database with live search functionality like on netflix. ITs created with React, React BOOtstrap,custom components and HOOKS with props sharing.
 On every search or change of input of searchbar, api request is called and view is changed based on functionality of that call. Relevant information from api call is displayed and styled.   
@@ -20,38 +20,18 @@ function App() {
   const [movieID, setMovieId] = React.useState();
   const [content, setContent] = React.useState("trending");
   const [page, setPage] = React.useState(1);
-  const trendingurl = `https://api.themoviedb.org/3/trending/all/week?api_key=895828b8903ed3292aba730835d1e40e&language=en-US&page=`;
-  const topratedurl =
-    "https://api.themoviedb.org/3/movie/top_rated?api_key=895828b8903ed3292aba730835d1e40e&language=en-US&page=1";
-  const upcomingurl =
-    "https://api.themoviedb.org/3/movie/upcoming?api_key=895828b8903ed3292aba730835d1e40e&language=en-US&page=1";
+
   const similiarurl = `https://api.themoviedb.org/3/movie/${movieID}/similar?api_key=<<api_key>>&language=en-US&page=1`;
-  function recent(param) {
-    console.log(trendingurl + param);
-    fetch(trendingurl + param)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setMovies(data.results);
-      });
-    setContent();
-  }
-  function newest() {
-    fetch(upcomingurl)
+  function fretch(url, param) {
+    console.log(url + param);
+    fetch(url + param)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setMovies(data.results);
       });
   }
-  function bestranked() {
-    fetch(topratedurl)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setMovies(data.results);
-      });
-  }
+
   React.useEffect(() => {
     console.log("fetch from genre" + selectedGenre);
     if (selectedGenre !== "s") {
@@ -93,9 +73,9 @@ function App() {
       <Menu
         page={page}
         setPage={setPage}
-        popular={recent}
-        bestranked={bestranked}
-        upcoming={newest}
+        fretch={fretch}
+        content={content}
+        setContent={setContent}
       />
       <Carousel movies={movies} />
       <div className="container1">
@@ -112,8 +92,13 @@ function App() {
             : null}
         </div>
       </div>
-      <Paginate recent={recent} />
-      <Pagination page={page} setPage={setPage} recent={recent} />
+
+      <Pagination
+        page={page}
+        setPage={setPage}
+        fretch={fretch}
+        content={content}
+      />
     </div>
   );
 }
