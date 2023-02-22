@@ -16,7 +16,6 @@ function App() {
   const [movies, setMovies] = React.useState([]);
   const [searchValue, SetSearchValue] = React.useState("");
   const [selectedMovie, selectMovie] = React.useState();
-  C;
   const [selectedGenre, updateSelectedGenre] = React.useState("s");
   const [movieID, setMovieId] = React.useState();
   const [content, setContent] = React.useState("trending");
