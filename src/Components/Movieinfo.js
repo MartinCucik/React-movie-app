@@ -221,6 +221,7 @@ const Movieinfo = ({
                   <div className="relative flex flex-col md:flex-row items-center md:items-start px-2">
                     <img
                       className="w-60 md:w-80"
+                      loading="lazy"
                       src={"https://image.tmdb.org/t/p/w500" + poster_path}
                       alt="movie poster"
                     />
@@ -262,7 +263,7 @@ const Movieinfo = ({
       />
       <div className="w-80 rounded overflow-hidden shadow-lg my-2 mx-2 flex flex-col md:w-64 bg-stone-400">
         <div className="relative">
-          <div className="tag">{vote_average.toFixed(2)}</div>
+          <div className="tag">{vote_average.toFixed(1)}</div>
           <img
             className="max-w-2"
             src={"https://image.tmdb.org/t/p/w500" + poster_path}

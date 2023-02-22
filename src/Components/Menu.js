@@ -15,7 +15,7 @@ function Menu({ fretch, upcoming, bestranked, setPage, content, setContent }) {
             className="nav-item px-2 py-2 cursor-pointer bg-red-400 hover:bg-red-700 md:px-6"
             onClick={() => {
               fretch(trendingurl, 1);
-              setPage(2);
+              setPage(1);
               setContent(trendingurl);
             }}
           >
@@ -26,7 +26,7 @@ function Menu({ fretch, upcoming, bestranked, setPage, content, setContent }) {
             onClick={() => {
               fretch(upcomingurl, 1);
               setContent(upcomingurl);
-              setPage(2);
+              setPage(1);
             }}
           >
             Upcoming
@@ -36,7 +36,7 @@ function Menu({ fretch, upcoming, bestranked, setPage, content, setContent }) {
             onClick={() => {
               fretch(topratedurl, 1);
               setContent(topratedurl);
-              setPage(2);
+              setPage(1);
             }}
           >
             Best ranked
