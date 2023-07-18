@@ -266,7 +266,6 @@ const Movieinfo = ({
         show={showModal}
         onHide={() => setShowModal(false)}
       />
-<<<<<<< HEAD
       <div className="w-80 rounded overflow-hidden shadow-lg my-2 mx-2 flex flex-col md:w-64 bg-stone-400">
         <div className="relative">
           <div className="tag">{vote_average.toFixed(1)}</div>
@@ -283,38 +282,6 @@ const Movieinfo = ({
             style={{ display: isLoading ? "none" : "block" }}
             onLoad={onLoad}
           ></img>
-=======
-      <animated.div className="hehe" style={styles}>
-        <div className="w-80 rounded overflow-hidden shadow-lg my-2 mx-2 flex flex-col md:w-64 bg-stone-400">
-          <div className="relative">
-            <div className="tag">{vote_average.toFixed(1)}</div>
-            <img
-              className="max-w-2"
-              src={"https://image.tmdb.org/t/p/w500" + poster_path}
-              alt="Sunset in the mountains"
-            ></img>
-          </div>
-          <div className="body flex flex-col justify-between flex-auto">
-            <div className="font-bold text-xl text-center mb-2">{title}</div>
-            <p className="content">
-              <div className="text-center">{d.getFullYear()}</div>
-              <div className="">
-                <span style={{ fontSize: "15px" }}>
-                  {Genres(genres(genre_ids))}
-                </span>
-              </div>{" "}
-              <div className="text-center">
-                <button
-                  className="bg-transparent text-center hover:bg-blue-500 text-black font-semibold hover:text-white py-2 px-4 border border-stone-500 hover:border-transparent rounded"
-                  type="button"
-                  onClick={() => setShowModal(true)}
-                >
-                  More info
-                </button>
-              </div>{" "}
-            </p>
-          </div>
->>>>>>> 251a493fa2705e1068d5171d87c264b8cb5caad6
         </div>
         {/* <MyVerticallyCenteredModal // modal which is hidden
         show={modalShow}
