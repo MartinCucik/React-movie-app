@@ -5,6 +5,7 @@ import Movieinfo from "./Components/Movieinfo";
 import Carousel from "./Components/Carousel";
 import Menu from "./Components/Menu";
 import Pagination from "./Components/Pagination";
+import { animated, useSpring } from "@react-spring/web";
 
 /*
 In this app ,i ve choosen user scenario of movie database with live search functionality like on netflix. ITs created with React, React BOOtstrap,custom components and HOOKS with props sharing.
