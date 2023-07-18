@@ -18,6 +18,11 @@ const Movieinfo = ({
   updateSelectedGenre,
 }) => {
   const [showModal, setShowModal] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  function onLoad() {
+    setTimeout(() => setIsLoading(false), 100);
+  }
   const styles = useSpring({
     from: { opacity: "0.1" },
     to: { opacity: "1" },
@@ -266,8 +271,16 @@ const Movieinfo = ({
           <div className="tag">{vote_average.toFixed(1)}</div>
           <img
             className="max-w-2"
+            src="https://via.placeholder.com/500x750/171412"
+            alt="Sunset in the mountains"
+            style={{ display: isLoading ? "block" : "none" }}
+          ></img>
+          <img
+            className="max-w-2"
             src={"https://image.tmdb.org/t/p/w500" + poster_path}
             alt="Sunset in the mountains"
+            style={{ display: isLoading ? "none" : "block" }}
+            onLoad={onLoad}
           ></img>
         </div>
         <div className="body flex flex-col justify-between flex-auto">

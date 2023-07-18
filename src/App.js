@@ -18,7 +18,9 @@ function App() {
   const [selectedMovie, selectMovie] = React.useState();
   const [selectedGenre, updateSelectedGenre] = React.useState("s");
   const [movieID, setMovieId] = React.useState();
-  const [content, setContent] = React.useState("trending");
+  const [content, setContent] = React.useState(
+    "https://api.themoviedb.org/3/trending/all/week?api_key=895828b8903ed3292aba730835d1e40e&language=en-US&page="
+  );
   const [page, setPage] = React.useState(1);
 
   const similiarurl = `https://api.themoviedb.org/3/movie/${movieID}/similar?api_key=<<api_key>>&language=en-US&page=1`;
