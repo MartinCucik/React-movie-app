@@ -331,7 +331,7 @@ const Movieinfo = ({
         </Card>
       </animated.div>
     */}
-      </animated.div>
+      </div>
     </div>
   );
 };
