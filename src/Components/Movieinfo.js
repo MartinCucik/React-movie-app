@@ -271,7 +271,7 @@ const Movieinfo = ({
           <div className="tag">{vote_average.toFixed(1)}</div>
           <img
             className="max-w-2"
-            src="https://via.placeholder.com/500x750/171412"
+            src="https://via.placeholder.com/500x750/44403C"
             alt="Sunset in the mountains"
             style={{ display: isLoading ? "block" : "none" }}
           ></img>
@@ -282,6 +282,26 @@ const Movieinfo = ({
             style={{ display: isLoading ? "none" : "block" }}
             onLoad={onLoad}
           ></img>
+        </div>
+        <div className="body flex flex-col justify-between flex-auto">
+          <div className="font-bold text-xl text-center mb-2">{title}</div>
+          <p className="content">
+            <div className="text-center">{d.getFullYear()}</div>
+            <div className="">
+              <span style={{ fontSize: "15px" }}>
+                {Genres(genres(genre_ids))}
+              </span>
+            </div>{" "}
+            <div className="text-center">
+              <button
+                className="bg-transparent text-center hover:bg-blue-500 text-black font-semibold hover:text-white py-2 px-4 border border-stone-500 hover:border-transparent rounded"
+                type="button"
+                onClick={() => setShowModal(true)}
+              >
+                More info
+              </button>
+            </div>{" "}
+          </p>
         </div>
         {/* <MyVerticallyCenteredModal // modal which is hidden
         show={modalShow}

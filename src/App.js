@@ -80,7 +80,7 @@ function App() {
         content={content}
         setContent={setContent}
       />
-      <Carousel movies={movies} />
+
       <div className="container1">
         <div className="movie">
           {movies && movies.length > 0
