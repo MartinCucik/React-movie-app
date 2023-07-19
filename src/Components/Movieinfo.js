@@ -21,7 +21,7 @@ const Movieinfo = ({
   const [isLoading, setIsLoading] = React.useState(true);
 
   function onLoad() {
-    setTimeout(() => setIsLoading(false), 100);
+    setTimeout(() => setIsLoading(false), 10);
   }
   const styles = useSpring({
     from: { opacity: "0.1" },

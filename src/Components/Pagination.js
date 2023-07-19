@@ -13,8 +13,11 @@ function Pagination({ fretch, page, setPage, recent, content }) {
         <ul className="pagination py-2">
           <button
             onClick={() => {
-              setPage(page + 1);
-              fretch(content, page + 1);
+              if (page > 1) {
+                setPage(page - 1);
+                fretch(content, page - 1);
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
             }}
           >
             Previous
@@ -25,6 +28,7 @@ function Pagination({ fretch, page, setPage, recent, content }) {
               onClick={() => {
                 setPage(number);
                 fretch(content, number);
+                window.scrollTo({ top: 0, behavior: "smooth" });
               }}
               className={`page-number text-lg cursor-pointer px-1 hover:scale-150 ${
                 page === number ? "underline decoration-sky-400 text-2xl" : ""
@@ -36,7 +40,8 @@ function Pagination({ fretch, page, setPage, recent, content }) {
           <button
             onClick={() => {
               setPage(page + 1);
-              fretch(content, page);
+              fretch(content, page + 1);
+              window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
             Next>
