@@ -217,8 +217,8 @@ const Movieinfo = ({
                 {/*content*/}
                 <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none bg-zinc-300">
                   {/*header*/}
-                  <div className="flex items-center justify-center p-5 rounded-t">
-                    <h3 className="text-3xl font-semibold text-center">
+                  <div className="p-0 flex items-center justify-center sm:p-5 rounded-t">
+                    <h3 className="hidden sm:block text-3xl font-semibold text-center display">
                       {title}
                     </h3>
                   </div>
@@ -231,12 +231,12 @@ const Movieinfo = ({
                       alt="movie poster"
                     />
                     <div className="body flex flex-col justify-evenly flex-auto">
-                      <p className="my-4 text-slate-500 text-lg leading-relaxed px-2">
+                      <p className="my-4 text-slate-500 text-lg leading-relaxed px-2 sm:py-0">
                         {overview}
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center justify-center p-6">
+                  <div className="flex items-center justify-center p-0 sm:p-6">
                     <span className="text-2xl">
                       {Genres(genres(genre_ids))}
                     </span>
@@ -287,7 +287,7 @@ const Movieinfo = ({
           <div className="font-bold text-xl text-center mb-2">{title}</div>
           <p className="content">
             <div className="text-center">{d.getFullYear()}</div>
-            <div className="">
+            <div className="text-center">
               <span style={{ fontSize: "15px" }}>
                 {Genres(genres(genre_ids))}
               </span>
