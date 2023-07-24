@@ -237,7 +237,7 @@ const Movieinfo = ({
                     </div>
                   </div>
                   <div className="flex items-center justify-center p-0 sm:p-6">
-                    <span className="text-2xl">
+                    <span className="md:text-2xl">
                       {Genres(genres(genre_ids))}
                     </span>
                   </div>
