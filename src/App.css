@@ -9,7 +9,15 @@ body {
   font-size: 10rem;
 }
 .container1 {
-  background-color: rgba(0, 0, 0, 0.847);
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(59, 11, 36, 1) 13%,
+    rgba(173, 32, 35, 1) 42%,
+    rgba(187, 35, 35, 1) 59%,
+    rgba(72, 31, 31, 1) 85%
+  );
 
   display: flex;
   width: 100%;

@@ -1,7 +1,7 @@
 import React from "react";
 
 import logo2 from "../Images/logo2.jpg";
-
+import "./Navbar.css";
 const Navbar = (props) => {
   const [debouncedTerm, setDebouncedTerm] = React.useState("");
   React.useEffect(() => {
@@ -21,7 +21,7 @@ const Navbar = (props) => {
           ></img>
         </a>
 
-        <form className="flex flex-col md:flex-row text-xl items-center border-t-emerald-500">
+        <form className="flex flex-row text-lg md:text-xl items-center border-t-emerald-500">
           <input
             className="px-2 py-2"
             value={props.value}

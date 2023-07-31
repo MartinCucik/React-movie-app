@@ -16,6 +16,10 @@ const Movieinfo = ({
   selectMovie,
   selectedGenre,
   updateSelectedGenre,
+  favid,
+  writeData,
+  deleteData,
+  favorite,
 }) => {
   const [showModal, setShowModal] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
@@ -34,7 +38,7 @@ const Movieinfo = ({
     title = name;
     d = new Date(first_air_date);
   }
-
+  /*
   function genres(genre_ids) {
     const newArr = genre_ids.map(myFunction);
     function myFunction(num) {
@@ -120,15 +124,16 @@ const Movieinfo = ({
 
     return newArr;
   }
-
+*/
   function update(genre) {
     updateSelectedGenre(genre[1]);
     console.log(genre);
     console.log(selectedGenre);
   }
   const Genres = (genreIds) => {
-    return genreIds.map((genreId, index) => (
+    return genreIds.slice(0, 3).map((genreId, index) => (
       <span
+        className="border-solid border-2 border-black mx-1 rounded-lg px-1 my-1"
         style={{
           cursor: "pointer",
         }}
@@ -136,7 +141,6 @@ const Movieinfo = ({
           update(genreId);
         }}
       >
-        {index > 0 && ","}
         {genreId[0]}
       </span>
     ));
@@ -215,7 +219,7 @@ const Movieinfo = ({
                 }}
               >
                 {/*content*/}
-                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none bg-zinc-300">
+                <div className="border-0 rounded-lg shadow-2xl relative flex flex-col w-full bg-white outline-none focus:outline-none bg-zinc-300">
                   {/*header*/}
                   <div className="p-0 flex items-center justify-center sm:p-5 rounded-t">
                     <h3 className="hidden sm:block text-3xl font-semibold text-center display">
@@ -231,15 +235,13 @@ const Movieinfo = ({
                       alt="movie poster"
                     />
                     <div className="body flex flex-col justify-evenly flex-auto">
-                      <p className="my-4 text-slate-500 text-lg leading-relaxed px-2 sm:py-0">
+                      <p className="my-4 text-slate-500 text-sm md:text-lg leading-relaxed px-2 sm:py-0">
                         {overview}
                       </p>
                     </div>
                   </div>
                   <div className="flex items-center justify-center p-0 sm:p-6">
-                    <span className="md:text-2xl">
-                      {Genres(genres(genre_ids))}
-                    </span>
+                    <span className="md:text-2xl"></span>
                   </div>
                   {/*footer*/}
                   <div className="flex items-center justify-end  rounded-b">
@@ -266,9 +268,28 @@ const Movieinfo = ({
         show={showModal}
         onHide={() => setShowModal(false)}
       />
-      <div className="w-80 rounded overflow-hidden shadow-lg my-2 mx-2 flex flex-col md:w-64 bg-stone-400">
+      <div
+        className="w-40 sm:w-80 rounded-lg overflow-hidden shadow-lg my-2 mx-2 flex flex-col md:w-64 bg-stone-400 transition-all ease-in-out hover:scale-105"
+        style={{ boxShadow: "7px 3px 3px black" }}
+        onClick={() => {
+          setShowModal(true);
+          console.log(id);
+          if (!favid.includes(id)) {
+            writeData(id);
+          } else {
+            deleteData(id);
+            console.log("je vo favorite");
+            console.log("favorite");
+          }
+        }}
+      >
         <div className="relative">
-          <div className="tag">{vote_average.toFixed(1)}</div>
+          <div className="tag border-solid border-2 border-black rounded-lg">
+            {vote_average.toFixed(1)}
+          </div>
+          <div className="year text-center border-solid border-2 border-black rounded-lg">
+            {d.getFullYear()}
+          </div>
           <img
             className="max-w-2"
             src="https://via.placeholder.com/500x750/44403C"
@@ -286,20 +307,23 @@ const Movieinfo = ({
         <div className="body flex flex-col justify-between flex-auto">
           <div className="font-bold text-xl text-center mb-2">{title}</div>
           <p className="content">
-            <div className="text-center">{d.getFullYear()}</div>
             <div className="text-center">
-              <span style={{ fontSize: "15px" }}>
-                {Genres(genres(genre_ids))}
+              <span
+                className="flex flex-wrap flex-row"
+                style={{ fontSize: "15px" }}
+              >
+                {/*   {Genres(genres(genre_ids))}*/}
+                {favid.includes(id) ? <div>hehe</div> : null}
               </span>
             </div>{" "}
             <div className="text-center">
-              <button
+              {/*}     <button
                 className="bg-transparent text-center hover:bg-blue-500 text-black font-semibold hover:text-white py-2 px-4 border border-stone-500 hover:border-transparent rounded"
                 type="button"
                 onClick={() => setShowModal(true)}
               >
                 More info
-              </button>
+  </button>*/}
             </div>{" "}
           </p>
         </div>
